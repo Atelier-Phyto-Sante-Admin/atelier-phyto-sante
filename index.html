@@ -1,164 +1,386 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>L'Atelier Phyto Santé — Carte de Visite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <style>
+    
+      .vcard-export-root {
+        --green-deep: #1e4420;
+        --green-mid:  #4a7c3f;
+        --green-light: #4a7c3fbb;
+        --green-pale: #4a7c3f88;
+        --cream: #f9f5ee;
+        --cream-dark: #ede6d6;
+        --sand: #c8bb99;
+        --text-dark: #2a2318;
+        --text-mid: #5a5248;
+        --text-soft: #8a7d6a;
+        --radius-card: 24px;
+        --shadow-card: 0 8px 40px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+        --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        --card-font: 'Inter', sans-serif;
+        --card-bg-image: none;
+        --card-bg-opacity: 0.15;
+      }
+      .vcard-export-root, 
+      .vcard-export-root div, 
+      .vcard-export-root span, 
+      .vcard-export-root p, 
+      .vcard-export-root a, 
+      .vcard-export-root h1 {
+        font-family: 'Inter', sans-serif;
+      }
+    
+    
+  /* ── THÈME FIXE POUR L'INTERFACE GLOBAL / FORMULAIRE (GAUCHE) ── */
+  :root {
+    --app-green-deep: #1e4420;
+    --app-green-mid:  #2d5a27;
+    --app-cream: #f9f5ee;
+    --app-cream-dark: #ede6d6;
+    --app-sand: #c8bb99;
+    --app-text-dark: #2a2318;
+    --app-text-mid: #5a5248;
+    --app-transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Lato:wght@300;400;700&display=swap');
-.outer{display:flex;flex-direction:column;align-items:center;gap:1.5rem;padding:1.5rem 0;}
-.tabs{display:flex;gap:8px;}
-.tab{padding:6px 18px;border-radius:20px;border:0.5px solid #4a7c3f;background:transparent;color:#4a7c3f;cursor:pointer;font-size:12px;font-family:'Lato',sans-serif;transition:all .2s;}
-.tab.active{background:#2d5a27;color:#fff;border-color:#2d5a27;}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-.card{width:680px;max-width:100%;background:linear-gradient(145deg,#f9f6f0,#f2ede3);border-radius:18px;border:0.5px solid #c8bb99;overflow:hidden;font-family:'Lato',sans-serif;}
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: linear-gradient(160deg, var(--app-cream) 0%, #e8f0e4 50%, var(--app-cream-dark) 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: var(--app-text-dark);
+    -webkit-font-smoothing: antialiased;
+    padding-bottom: 60px;
+    transition: background 0.3s ease;
+  }
 
-.card-header{background:linear-gradient(135deg,#2d5a27,#4a7c3f,#3a6b34);padding:2rem 2.5rem 1.5rem;position:relative;overflow:hidden;}
-.card-header::before{content:'';position:absolute;top:-30px;right:-30px;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,0.06);}
-.card-header::after{content:'';position:absolute;bottom:-40px;left:40%;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,0.04);}
-.brand-top{display:flex;align-items:center;gap:1rem;margin-bottom:1rem;}
-.logo-circle{width:58px;height:58px;border-radius:50%;background:rgba(255,255,255,0.15);border:1.5px solid rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0;}
-.brand-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#fff;letter-spacing:.5px;line-height:1.2;}
-.brand-name span{display:block;font-size:13px;font-weight:400;color:rgba(255,255,255,0.75);font-family:'Lato',sans-serif;letter-spacing:2px;text-transform:uppercase;margin-top:2px;}
-.tagline{font-size:12px;color:rgba(255,255,255,0.8);line-height:1.5;font-style:italic;max-width:480px;}
+  /* ── STRUCTURE APPLICATIVE ── */
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem 4rem;
+    width: 100%;
+  }
 
-.card-body{padding:1.5rem 2.5rem 1rem;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
-.name-block{grid-column:1/-1;border-bottom:0.5px solid #c8bb99;padding-bottom:1rem;}
-.person-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:#2d5a27;margin:0;}
-.person-title{font-size:12px;color:#7a6e5e;letter-spacing:1.5px;text-transform:uppercase;margin:2px 0 0;font-weight:300;}
+  @media (min-width: 950px) {
+    .container { flex-direction: row; align-items: flex-start; }
+    .form-wrapper {
+      flex: 1.2; position: sticky; top: 2rem;
+      max-height: calc(100vh - 80px); overflow-y: auto; padding-right: 10px;
+    }
+    .preview-wrapper {
+      flex: 1; background: rgba(255, 255, 255, 0.4); padding: 2rem;
+      border-radius: 24px; border: 1px solid rgba(200,187,153,0.3);
+    }
+  }
 
-.section h4{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:#4a7c3f;margin:0 0 .75rem;font-weight:700;}
-.ci{display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;font-size:13px;color:#3a3226;line-height:1.4;}
-.ci i{color:#4a7c3f;font-size:15px;margin-top:1px;flex-shrink:0;}
-.ci a{color:#4a7c3f;text-decoration:none;}
+  .form-wrapper::-webkit-scrollbar { width: 6px; }
+  .form-wrapper::-webkit-scrollbar-track { background: transparent; }
+  .form-wrapper::-webkit-scrollbar-thumb { background: var(--app-sand); border-radius: 10px; }
 
-.card-footer{background:#f5efe3;border-top:0.5px solid #c8bb99;padding:.75rem 2.5rem;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#8a7d6a;flex-wrap:wrap;gap:4px;}
-.fl{display:flex;gap:4px;}.flb{font-weight:700;color:#5a5248;}
+  /* ── FORMULAIRE ET NAVIGATION PAR ONGLETS ── */
+  .form-card {
+    background: #fff; border-radius: 24px; padding: 2rem;
+    border: 1px solid rgba(200,187,153,0.4); box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  }
+  
+  .form-tabs-nav {
+    display: flex; background: var(--app-cream); border: 1px solid var(--app-cream-dark);
+    border-radius: 14px; padding: 4px; gap: 4px; margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .form-tab-btn {
+    flex: 1; min-width: 100px; padding: 10px; border: none; background: transparent;
+    font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 600;
+    color: var(--app-text-mid); cursor: pointer; border-radius: 10px; transition: var(--app-transition);
+  }
+  .form-tab-btn.active {
+    background: var(--app-green-deep); color: #fff; box-shadow: 0 4px 12px rgba(30,68,32,0.15);
+  }
 
-.back-card{width:680px;max-width:100%;background:linear-gradient(135deg,#2d5a27,#3a6b34);border-radius:18px;padding:2rem 2.5rem;font-family:'Lato',sans-serif;color:#fff;}
-.back-title{font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(255,255,255,0.6);margin:0 0 1.25rem;letter-spacing:1px;text-transform:uppercase;}
-.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem;}
-.svc{background:rgba(255,255,255,0.1);border:0.5px solid rgba(255,255,255,0.2);border-radius:10px;padding:.75rem;text-align:center;font-size:12px;color:rgba(255,255,255,0.9);line-height:1.4;}
-.svc-icon{font-size:22px;margin-bottom:6px;display:block;}
-.iban-box{background:rgba(255,255,255,0.08);border:0.5px solid rgba(255,255,255,0.2);border-radius:10px;padding:.75rem 1rem;display:flex;justify-content:space-between;align-items:center;}
-.iban-lbl{font-size:10px;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;}
-.iban-num{font-family:monospace;font-size:13px;color:#fff;letter-spacing:1px;}
-.bank-nm{font-size:11px;color:rgba(255,255,255,0.6);}
+  .form-section-content { display: none; animation: fadeSlideIn 0.35s ease both; }
+  .form-section-content.active { display: block; }
 
-.qr-wrap{display:flex;flex-direction:column;align-items:center;gap:1rem;}
-.qr-box{background:var(--color-background-primary);border:0.5px solid #c8bb99;border-radius:14px;padding:1.25rem;display:flex;flex-direction:column;align-items:center;gap:10px;}
-.qr-lbl{font-size:12px;color:var(--color-text-secondary);text-align:center;font-family:'Lato',sans-serif;line-height:1.5;}
-.qr-url{font-size:11px;color:#4a7c3f;font-weight:500;}
-.dl-btn{padding:8px 22px;border-radius:20px;border:none;background:#2d5a27;color:#fff;cursor:pointer;font-size:12px;font-family:'Lato',sans-serif;}
-</style>
+  .form-card h3 {
+    font-family: 'Cormorant Garamond', serif; color: var(--app-green-deep);
+    margin-bottom: 1.2rem; font-size: 1.4rem; border-bottom: 1px solid var(--app-cream-dark); padding-bottom: 0.4rem;
+  }
+  
+  .form-group { margin-bottom: 1.2rem; }
+  .form-group label {
+    display: block; font-size: 0.78rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1px; color: var(--app-text-mid); margin-bottom: 0.4rem;
+  }
+  .form-group input, .form-group textarea, .form-group select {
+    width: 100%; padding: 0.75rem 1rem; font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+    border: 1px solid var(--app-sand); border-radius: 10px; background-color: var(--app-cream);
+    color: var(--app-text-dark); transition: var(--app-transition);
+  }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+    outline: none; border-color: var(--app-green-mid); background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(74,124,63,0.15);
+  }
+  .form-group input[type="file"] { background: #fff; padding: 0.5rem; cursor: pointer; }
+  .form-group input[type="color"] { padding: 0.2rem; height: 42px; cursor: pointer; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .range-container { display: flex; align-items: center; gap: 10px; }
+  .range-container input { flex: 1; }
 
+  /* ── ZONE DE PRÉVISUALISATION ── */
+  .preview-wrapper { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; width: 100%; position: relative; }
+  .vcard-export-root { width: 100%; max-width: 480px; display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
 
-<div class="outer">
-  <div class="tabs">
-    <button class="tab active" onclick="show('recto')">Recto</button>
-    <button class="tab" onclick="show('verso')">Verso</button>
-    <button class="tab" onclick="show('qr')">QR Code</button>
-  </div>
+  /* En-tête */
+  .page-header { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; text-align: center; width: 100%; }
+  .page-header .leaf-icon { font-size: 2rem; line-height: 1; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.15)); width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; }
+  .page-header .leaf-icon img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+  .page-header h1 { font-size: clamp(1.4rem, 5vw, 1.8rem); font-weight: 600; color: var(--green-deep); letter-spacing: 0.5px; }
+  .page-header p { font-size: 0.75rem; color: var(--text-soft); letter-spacing: 2px; text-transform: uppercase; }
+  .description-block { font-size: 0.85rem; color: var(--text-mid); max-width: 450px; text-align: center; line-height: 1.5; margin-top: 0.5rem; }
 
-  <!-- RECTO -->
-  <div id="v-recto" class="card">
-    <div class="card-header">
-      <div class="brand-top">
-        <div class="logo-circle">🌿</div>
-        <div>
-          <div class="brand-name">
-            L'Atelier Phyto Santé
-            <span>Bizerte — Tunisie</span>
+  /* Panneaux d'affichage */
+  .panel-wrap { width: 100%; }
+  .panel { display: none; animation: fadeSlideIn 0.4s cubic-bezier(0.4,0,0.2,1) both; }
+  .panel.active { display: block; }
+  .panel.active.flex { display: flex; }
+
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* RECTO CARTE */
+  .card { background: var(--cream); border-radius: var(--radius-card); border: 1px solid var(--cream-dark); overflow: hidden; box-shadow: var(--shadow-card); transition: var(--transition); position: relative; z-index: 1; }
+  .card-header { background: linear-gradient(135deg, var(--green-deep) 0%, var(--green-mid) 100%); padding: 1.75rem 1.5rem 1.5rem; position: relative; overflow: hidden; transition: var(--transition); z-index: 1; }
+  
+  /* L'image de fond en filigrane s'applique uniquement à l'overlay du RECTO (class .recto-bg-overlay) */
+  .recto-bg-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-image: var(--card-bg-image); background-size: cover; background-position: center;
+    opacity: var(--card-bg-opacity); pointer-events: none; z-index: -1; transition: var(--transition);
+  }
+
+  .brand-row { display: flex; align-items: center; gap: 1rem; position: relative; z-index: 2; }
+  .logo-circle { width: 56px; height: 56px; border-radius: 50%; background: rgba(255,255,255,0.18); border: 1.5px solid rgba(255,255,255,0.45); display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; box-shadow: 0 4px 16px rgba(0,0,0,0.15); overflow: hidden; }
+  .logo-circle img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .brand-info { flex: 1; }
+  .brand-name { font-size: clamp(1.3rem, 4.5vw, 1.55rem); font-weight: 600; color: #fff; line-height: 1.25; }
+  .brand-sub { font-size: 0.68rem; font-weight: 500; color: rgba(255,255,255,0.75); letter-spacing: 2px; text-transform: uppercase; margin-top: 3px; }
+
+  .card-body { padding: 1.5rem; position: relative; z-index: 2; }
+  .sections-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+  .section-title { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2.5px; color: var(--green-mid); font-weight: 700; margin-bottom: 0.85rem; display: flex; align-items: center; gap: 6px; }
+  .section-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, var(--sand), transparent); }
+
+  .ci { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; font-size: 0.88rem; color: var(--text-dark); line-height: 1.4; }
+  .ci i { color: var(--green-mid); font-size: 1.05rem; margin-top: 1px; flex-shrink: 0; opacity: 0.9; }
+  .ci i[class^="ti-"], .social-link i[class^="ti-"] { font-family: 'tabler-icons' !important; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; }
+  .ci a { color: var(--green-deep); text-decoration: none; font-weight: 500; word-break: break-all; }
+  .ci a:hover { text-decoration: underline; }
+
+  .social-grid { display: flex; gap: 12px; margin-top: 12px; padding-top: 5px; }
+  .social-link { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; background: var(--cream-dark); color: var(--green-deep); text-decoration: none; font-size: 1.15rem; transition: var(--transition); }
+  .social-link:hover { background: var(--green-mid); color: #fff; transform: translateY(-2px); }
+
+  .card-footer { background: var(--cream-dark); border-top: 1px solid rgba(200,187,153,0.5); padding: 0.85rem 1.5rem; display: flex; flex-direction: column; gap: 4px; align-items: center; text-align: center; position: relative; z-index: 2; }
+  .footer-badge-title { font-size: 0.78rem; color: var(--green-deep); font-weight: 700; }
+  .footer-badge-text { font-size: 0.7rem; color: var(--green-mid); font-weight: 500; }
+
+  /* VERSO CARTE */
+  .back-card { background: linear-gradient(145deg, var(--green-deep) 0%, var(--green-mid) 100%); border-radius: var(--radius-card); padding: 1.75rem 1.5rem; color: #fff; box-shadow: var(--shadow-card); position: relative; overflow: hidden; transition: var(--transition); z-index: 1; }
+  .back-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; position: relative; z-index: 2; }
+  .back-title { font-size: 0.85rem; color: rgba(255,255,255,0.6); letter-spacing: 2px; text-transform: uppercase; }
+  .back-logo { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .back-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block; }
+
+  .sgrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.6rem; margin-bottom: 1.25rem; position: relative; z-index: 2; }
+  .svc { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: 12px; padding: 0.6rem; text-align: center; font-size: 0.75rem; color: rgba(255,255,255,0.95); line-height: 1.3; }
+
+  .legal-box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); border-radius: 14px; padding: 1rem; position: relative; z-index: 2; }
+  .back-section-title { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.5); font-weight: 700; margin-bottom: 0.6rem; }
+  .legal-grid { display: flex; flex-direction: column; gap: 6px; }
+  .legal-item { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: rgba(255,255,255,0.9); }
+  .legal-item i { font-size: 0.95rem; opacity: 0.7; }
+
+  .iban-box { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); border-radius: 14px; padding: 1rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 0.75rem; position: relative; z-index: 2; }
+  .iban-lbl { font-size: 0.6rem; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 4px; }
+  .iban-num { font-family: 'Courier New', monospace; font-size: 0.78rem; color: #fff; letter-spacing: 0.5px; word-break: break-all; }
+  .bank-nm { font-size: 0.65rem; color: rgba(255,255,255,0.55); margin-top: 3px; }
+
+  /* PANNEAU QR CODE */
+  .qr-panel { flex-direction: column; align-items: center; gap: 1.25rem; }
+  .qr-panel.active { display: flex; }
+  .qr-card { background: #fff; border-radius: var(--radius-card); padding: 1.75rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; box-shadow: var(--shadow-card); border: 1px solid rgba(200,187,153,0.4); width: 100%; }
+  .qr-canvas-wrap { position: relative; padding: 12px; background: linear-gradient(135deg, var(--cream), var(--cream-dark)); border-radius: 16px; border: 1px solid rgba(200,187,153,0.5); }
+  #qr-canvas { display: block; border-radius: 6px; }
+  .qr-info { text-align: center; }
+  .qr-info p { font-size: 0.82rem; color: var(--text-mid); line-height: 1.6; }
+  .qr-info strong { color: var(--green-deep); }
+  .qr-url { font-size: 0.75rem; color: var(--green-mid); font-weight: 600; margin-top: 4px; }
+
+  /* BOUTONS GENERATEUR */
+  .btn-container { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1.5rem; width: 100%; }
+  .dl-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 24px; border-radius: 50px; border: none;
+    background: linear-gradient(135deg, var(--app-green-mid), #4a7c3f); color: #fff;
+    cursor: pointer; font-size: 0.88rem; font-family: 'DM Sans', sans-serif; font-weight: 500;
+    transition: var(--app-transition); box-shadow: 0 4px 16px rgba(0,0,0,0.1); -webkit-tap-highlight-color: transparent;
+  }
+  .dl-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+  .dl-btn.btn-primary-dl { background: var(--app-green-deep); }
+
+  /* PILULIER DE NAVIGATION */
+  .tabs-container-preview { width: 100%; display: flex; justify-content: center; margin-top: 0.5rem; }
+  .tabs-pill-box { display: flex; background: var(--cream-dark); border: 1px solid rgba(200,187,153,0.5); border-radius: 40px; padding: 6px; gap: 4px; width: 100%; max-width: 440px; }
+  .nav-action-tab {
+    flex: 1; padding: 12px 16px; border-radius: 35px; border: none; background: transparent;
+    color: var(--text-mid); cursor: pointer; font-size: 0.92rem; font-family: 'DM Sans', sans-serif;
+    font-weight: 600; transition: all 0.3s ease; text-align: center; -webkit-tap-highlight-color: transparent;
+  }
+  .nav-action-tab.active { background: var(--green-deep); color: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+
+    body { padding: 2rem 1rem; display: flex; justify-content: center; align-items: center; min-height: 100vh; background: #fff; }
+    .vcard-export-root { animation: fadeSlideIn 0.5s ease; }
+  </style>
+</head>
+<body>
+
+  <div class="vcard-export-root">
+    
+      
+      <div class="page-header">
+        <p>Carte de visite numérique</p>
+        <div class="leaf-icon" id="lbl-page-icon-container">🌿</div>
+        <h1 id="lbl-header-company">L'Atelier Phyto Santé</h1>
+        <p id="lbl-header-location">Bizerte — Tunisie</p> 
+        <div class="description-block" id="lbl-header-desc">Extraction et transformation de plantes aromatiques et médicinales · Huiles essentielles &amp; produits naturels sans additifs chimiques</div>
+      </div>
+
+      <div class="panel-wrap">
+
+        <div id="v-recto" class="panel active">
+          <div class="card">
+            <div class="recto-bg-overlay"></div>
+            
+            <div class="card-header">
+              <div class="brand-row">
+                <div class="logo-circle" id="lbl-logo-container">🌿</div>
+                <div class="brand-info">
+                  <div class="brand-name" id="lbl-name">Mme Kallel Amira</div>
+                  <p class="brand-sub" id="lbl-title">Gérante &amp; Fondatrice</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-body">
+              <div class="sections-grid">
+                <div class="section">
+                  <div class="section-title">Contact</div>
+                  <div class="ci"><i class="ti ti-phone"></i><span id="lbl-phone">+216 25 441 913</span></div>
+                  <div class="ci"><i class="ti ti-mail"></i><span id="lbl-email">amiramaria007@gmail.com</span></div>
+                  <div class="ci"><i class="ti ti-world"></i><a id="lbl-web" href="https://atelier-phyto-sante.netlify.app/" target="_blank" rel="noopener">atelier-phyto-sante.netlify.app</a></div>
+                  <div class="ci"><i class="ti ti-map-pin"></i><span id="lbl-address">Demna, Sidi Abdel Aziz<br>Ras el Jbal, Bizerte 7070</span></div>
+                  
+                  <div class="social-grid" id="lbl-social-container"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-footer">
+              <div class="footer-badge-title"><span id="lbl-footer-company">L'Atelier Phyto Santé</span> 🌿</div>
+              <div class="footer-badge-text" id="lbl-slogan">Produits 100% Naturel · Sans additifs chimiques</div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="tagline">Extraction et transformation de plantes aromatiques et médicinales · Huiles essentielles &amp; produits naturels sans additifs chimiques</div>
-    </div>
 
-    <div class="card-body">
-      <div class="name-block">
-        <p class="person-name">Mme Kallel Amira</p>
-        <p class="person-title">Gérante &amp; Fondatrice</p>
+        <div id="v-verso" class="panel">
+          <div class="back-card">
+            <div class="back-header">
+              <span class="back-title">Nos produits &amp; services</span>
+              <span class="back-logo" id="lbl-back-logo-container">🌱</span>
+            </div>
+            
+            <div class="sgrid" id="lbl-services-container"><div class="svc"><span>🍯</span> Huiles essentielles pures</div><div class="svc"><span>🐝</span> Huiles végétales naturelles</div><div class="svc"><span>🌸</span> Eaux florales &amp; hydrolats</div><div class="svc"><span>🌿</span> Plantes aromatiques séchées</div><div class="svc"><span>✨</span> Cosmétiques naturels</div><div class="svc"><span>🌻</span> Phytothérapie</div></div>
+          
+            <div class="legal-box">
+              <div class="back-section-title">Informations légales</div>
+              <div class="legal-grid">
+                <div class="legal-item"><i class="ti ti-certificate"></i><span id="lbl-legal-company">L'Atelier Phyto Santé</span></div>
+                <div class="legal-item"><i class="ti ti-building"></i><span id="lbl-legal-status">SURL · Capital 25 000 DT</span></div>
+                <div class="legal-item"><i class="ti ti-id"></i><span id="lbl-legal-mf">MF : 1960067V A M 000</span></div>
+              </div>
+            </div>
+            
+            <div class="iban-box">
+              <div>
+                <div class="iban-lbl">Coordonnées bancaires</div>
+                <div class="iban-num" id="lbl-iban">TN59 0813 5030 0610 0032 5065</div>
+                <div class="bank-nm" id="lbl-bank">BIAT — Banque Internationale Arabe de Tunisie</div>
+              </div>
+              <div class="iban-bank-icon">🏦</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="v-qr" class="panel qr-panel">
+          <div class="qr-card">
+            <div class="qr-canvas-wrap">
+              <canvas id="qr-canvas" width="200" height="200"></canvas>
+            </div>
+            <div class="qr-info">
+              <p>Scannez pour partager la carte visite virtuelle de <br><strong id="lbl-qr-company">L'Atelier Phyto Santé</strong></p>
+              <div class="qr-url" id="lbl-qr-url">atelier-phyto-sante.netlify.app</div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
-      <div class="section">
-        <h4>Contact</h4>
-        <div class="ci"><i class="ti ti-phone" aria-hidden="true"></i><span>+216 25 441 913</span></div>
-        <div class="ci"><i class="ti ti-mail" aria-hidden="true"></i><span>amiramaria007@gmail.com</span></div>
-        <div class="ci"><i class="ti ti-world" aria-hidden="true"></i><a href="https://atelier-phyto-sante.netlify.app/" target="_blank">atelier-phyto-sante.netlify.app</a></div>
-        <div class="ci"><i class="ti ti-map-pin" aria-hidden="true"></i><span>Demna, Sidi Abdel Aziz<br>Ras el Jbal, Bizerte 7070</span></div>
+      <div class="tabs-container-preview">
+        <div class="tabs-pill-box" role="tablist">
+          <button class="nav-action-tab active" id="btn-tab-recto" onclick="switchView('recto')">Recto</button>
+          <button class="nav-action-tab" id="btn-tab-verso" onclick="switchView('verso')">Verso</button>
+          <button class="nav-action-tab" id="btn-tab-qr" onclick="switchView('qr')">QR Code</button>
+        </div>
       </div>
 
-      <div class="section">
-        <h4>Informations légales</h4>
-        <div class="ci"><i class="ti ti-building" aria-hidden="true"></i><span>SURL · Capital 25 000 DT</span></div>
-        <div class="ci"><i class="ti ti-id" aria-hidden="true"></i><span>MF : 1960067V A M 000</span></div>
-        <div class="ci"><i class="ti ti-certificate" aria-hidden="true"></i><span>RC : Bizerte</span></div>
-      </div>
-    </div>
-
-    <div class="card-footer">
-      <div class="fl"><span class="flb">IBAN :</span><span>TN59 0813 5030 0610 0032 5065 · BIAT</span></div>
-      <span style="color:#8ab87a">🌿 100% Naturel · Sans additifs chimiques</span>
-    </div>
+    
   </div>
 
-  <!-- VERSO -->
-  <div id="v-verso" class="back-card" style="display:none">
-    <p class="back-title">Nos produits &amp; services</p>
-    <div class="sgrid">
-      <div class="svc"><span class="svc-icon">💧</span>Huiles essentielles pures</div>
-      <div class="svc"><span class="svc-icon">🌾</span>Huiles végétales naturelles</div>
-      <div class="svc"><span class="svc-icon">🌸</span>Eaux florales &amp; hydrolats</div>
-      <div class="svc"><span class="svc-icon">🌿</span>Plantes aromatiques séchées</div>
-      <div class="svc"><span class="svc-icon">✨</span>Cosmétiques naturels</div>
-      <div class="svc"><span class="svc-icon">🫙</span>Produits de phytothérapie</div>
-    </div>
-    <div class="iban-box">
-      <div>
-        <div class="iban-lbl">Coordonnées bancaires</div>
-        <div class="iban-num">TN59 0813 5030 0610 0032 5065</div>
-        <div class="bank-nm">BIAT — Banque Internationale Arabe de Tunisie</div>
-      </div>
-      <div style="font-size:28px">🏦</div>
-    </div>
-  </div>
+  <script>
+    const base64QR = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAOL0lEQVR4Aeydi5baOBBEufn/f56lM8OGuKuNFNlgWzUHDbjcL13RxyuHYX/dbrevo42vjp+e2lXYUX8VMzQVN/TWofxDU/6h7zFUrr20PerfImY0yD2OHyZgAoqAG0RRsWYCPwTcID8g/GQCioAbRFGxZgI/BGSD3Ddit/Hx1RTjp46mJ+AGf4+qzqaAK0Yq7op5OrWHf8SEv+cPNHEO32qk4n8EyLkgaz/mmz9V9e6hV8XLBqmMrZvAbATcILOtuOfbRcAN0oXLxrMRcIPMtuKebxeB5gaBvDmDPq2rsjXjp3Oga1AbuSe3/18qu9BAx4Ws/x/s6QVkOxjXnlKsvgSdSznFfNVQtkoDnQuyrvx7NMgxoU/rydfcID1BbWsCVyHgBrnKSnoeuxBwg+yC1UGvQsANcpWV9Dx2IeAGWWD1oQk8Ezh9g6i7L6E9T/LxGvLdjse5kWfIcaOG5RjJ0eu7zP04hlxrb+xW+0fO5+dW36PYnb5BjgLSdVyTgBvkmuvqWW1EwA2yEUiHuSYBN8j71tWZTkjg9A0CedMJWnveLD5eQ7vt6Po+crY8V7mUr7IFPa8e29Zcyi40yDWo/EfWTt8gR4br2s5PwA1y/jX0DHYk4AbZEa5Dn5+AG+T8a3i73TyJvQi4QfYi67iXINDcIHFXYnTsQayq6dO5YJ87ONAWt+Ki9IoVtOWq/PfQVf29Wk9dzQ3SE9S2JnAVAm6Qq6yk57ELATfILlgvFHTyqbhBJn8DePrrBGSDQN6cwT7aennHOguagdok9lQOOa6KGVprXMgxgVb333aRbzl+n3jTLyB91Szso1VTkg1SGVs3gdkIuEFmW3HPt4uAG6QLl423JHCGWG6QM6ySa/wYgV/LTdgRjisaqrbKtlVXMUODvBmsYkK2jRjLAdkOqMK+TV/W+TgG0ib5ce75GbId0FX/c7wjvfYVpGsZbTwbATfIbCvu+XYRcIN04bLxSQhsVqYbZDOUDnRFAm6QK66q57QZgeYGAdIdDaCrEEDGgH/XqwLUnRDIeSr/PXRVU2h75KpiwvYMYg5qqBog5weU6ebvFaCMKQu4i80Ncrf1wwSmI+AGmW7JPeEeArlBerxtawIXJ+AGufgCe3pjBGSDQN7MqE1YaJBte0qKGK1DxYWcH1CmUgPkxk3VJAPcRWULOi5k/R7ibQ9V617Je3JBGxcVMzQ1h9DVULaQ8wM32SA3/5iACfwm4Ab5jcG/TEATeGuD6BKsmsBxCbhBjrs2ruwABNwgB1gEl3BcAr8g795Hy4UcE7ipOwqQbUfzhz+0xVU1hQbZP3Q1It9yKLsebRnvE8eqXlUHZFaAMu3SVH5A3nXsCaziVv6+glRkrJvAncBVGuQ+FT9MYHsCbpDtmTrihQi4QS60mJ7K9gRkg6hNDLRvjpR/aKr80JdD2VXa0nftWMUAPS8VB7Stiqs0aPcHbavqUrkqDXLcylbp0O4P2VbVX2kqf4+t8g8N2uuSDRJBPEzABG7+LNbrN4EtZibgK8jMq++5vyTgBnmJyAYzE5BfPToKBGj+107ItlV+tUGD7A/IEMpfGt5FIM3hLr/toWoNDdrqCls11AQgxwSUqfw0hMoTmgxQiMAQ78i3HEUqOYfK1leQiox1E7gTcIPcIXzs4cSHJ+AGOfwSucBPEnCDfJK+cx+egBvk8EvkAj9JQDYI5DsKyzsEj+Oe4qEtbhUT2vyjtirGUg/b0QG5LshalQey7bLOtWNo91c1VLGhLS5kO0CGBdLdKqDZVhoWIjCUC/C/pN8u+uNpbUNAXkG2Ce0oJnB+Am6Q86+hZ7AjATfIjnAd+vwE5Jc29GzkRhGA3khB1lVdkO1Aa6pW0LaQdeUfmqpLaZBjgv4yi4jbOlSuyhdyDco/NBUDsr+ye7cG+9TlK8i7V/L8+aaagRtkquX2ZHsJuEF6idl+KgJukKmW25PtJeAG6SVm+6kIyD+YgvY7AnG3Yzl6CC5943jUP2Ko0RNX2ULmAlpT/pUGOUZl+059D4YqZmjf83r9GzIrQDpGXDWA9BEUZRearyASrUUT+CbgBvnm4N8mIAm4QSQWiybwTcAN8s3Bv01AEmj+qAnkjQ1oLTY3rQNyjMoXsq2cVSFC9q9yqRA9tsq/0lTcyvbTuqq10lStkNcAUKby20eqXEr/K+jTgbIF0sYd8N+D3PxjAisE/J9YK3B8ygTcIH4PmMAKATfIChyfMgHZIJA3LGpjE1oPQmiLW8WMfMtR2bbqkGsCpDsgN3LLmuJYBthAjNjLAbouyPpoCZBjgtZUrmXtj2NlCzmusgsNsi1oLexbh2yQhbMPTWBaAm6QaZfeE28h4AZpoWSbaQm4QaZdek+8hYAbpIWSbaYlIP8epIfG4y7E83O7/03eFYL2uw+gbSHrN/HzXPfza2FafvRB2ULO/xz/+bXy79GeYz1eV/6P88/PlS20zaHyH9Wfa3y8hlwTMJqq9PcVpETjEyZw82ex/CYwgTUCvoKs0fG56Qm4QaZ/CxjAGgHZII8N0fMz0LWhhmz/HG/t9VrBree+vr7Splr5Qq4TPv91oKDrgja94jvKAHL+KpfSVf7QlC2054oYy6Fihra0i+PQ1ZANEg4eJmACN2/S/SYwgTUCvoKs0fG56Qm4QaZ/CxjAGgE3yBqd4pzleQjIbzVR01c7/F4NaLoTVsWF7K9qrTQVt7KFnAv20VRdPVo1B6VDnkOVS/krW8gxQWsqZmiQ7VWusB0dkHNVMX0FqchYN4E7ATfIHYIfJlARcINUZKybwJ2AG+QO4UAPl3IwArJBIG9iYFxTc+/ZiPXYQq63Nb/Ks6aNxoVcK2itNZeyqzRozwXZtoqrmFW2Sod9cqm6IOcC/C/pN/+YwAoBeQVZsfcpE5iKgBtkquX2ZHsJuEF6iZ3W3oX/C4FdvrRBbYJCUwWC3hxB1pV/jwY5JmhNxQVtG3NbDuVfaUvftWPINVRxR3UYywXZH7TWWiuM+bfmedj5CvIg4WcTEATcIAKKJRN4EHCDPEj42QQEATeIgGKpk8CFzd0gF15cT22cgGyQtbsoy3Og7ypA1lW5y3hxrOxCgxwz7NUI+62HyhMa5LpUbsh20KdFvuXoybX07T1WuSqtN/bSXsVd2jyOIXNU/qFBtn3EWT7LBokgHiZgAjd/FstvAhNYI+AryBodn/s4gU8X4Ab59Ao4/6EJNH9pw16zANIXOSw3SmvHVV3Kp7JVOuS6lF2PpmqqtJ64PbbQPi9os63mAG3+UT+024b9u4avIO8i7TynJOAGOeWyueh3EXCDvIu08xyNQFM9bpAmTDaalYAbZNaV97ybCMg/mIL2OwrqDkaVWdkqrfKH9rog2/bkUjVAjgko03RnDrRdOAPJXtUaGmRbyFrEVSNiLIeyC21pF8ehLwfk/KD/J0SgbZcxe4+jtuUAnWtpF8egbX0F6V0J209FwA0y1XJ7sr0E/q1BerPY3gROSsANctKFc9nvITD8URPIm5vY9KihpgTZX9n1aq35lV1oKl/orUP5V5qKWdmO6tDOG9ptVV0w5q9ibqFBe12+gmxB3DEuS8ANctml9cS2IHC4BtliUo5hAlsRcINsRdJxLklA/kt6z6axxxby5qjHv8dWrRbk/MoutNFcPf7QXlfUNjJ66mq1VXaVNlJ7+EJmBcSpNLaowVeQhNWCCfwh4Ab5w8KvTCARmKlB0uQtmMArAm6QV4R8fmoCbpCpl9+Tf0VAftQESH+fUAWCdlsVA7I/jGsq11E1dbcFNANl2zMv0HEh6yquyg/ZF7SmYm6hQc5XxVVzqDRfQSqK1k3gTsANcocw/nCEqxJwg1x1ZT2vTQi4QTbB6CBXJfDWj5pUG6FWfXQRVJ4qJuRNH7RrVdxWXdUaGuQaVMywVUPZ9miQ86s8oam4oY8MFXMLDfK8AP/vD27+MYEVAv5PrBU4hzjlIj5KwA3yUfxOfnQCbpCjr5Dr+ygBN8hH8Tv50Qk0f9QE9C4fttffCQ10/aqG6u6LsoUcV9mFBtkWtKZqiBh7DMg17JUfcq7ROUGOCXSF9RWkC9e1jD2b1wTcIK8Z2WJiAm6QiRffU39NwA3ympEtJiYgG0RtxPbSPs2+Z149taq4o/4RE2j+Wx2VL2Ish7ILbWkXx6HvMSL2cozmWcZ7HKu4j3PLZ9kgKoA1E+ggcBlTN8hlltIT2YOAG2QPqo55GQJukMsspSeyB4HmBoG8OYQ+bXQCyw1UHPfEhFxv5Q/ttioGZH/QmvIf1eCYuUDXBW16xSXeC8tR2SoddP7mBlFBrZnA+wm8N6Mb5L28ne1kBNwgJ1swl/teAm6Q9/J2tpMRcIOcbMFc7nsJXLZBIN+V6EG7vCMSx5BjAjJs2LcOFQBIHykBbq0xKzuVay+tqmFE76kVNMMyhjhx2QYRc7VkAt0E3CDdyOwwEwE3yEyr7bl2E3CDdCOzw0wETtUgkDddPRu+noWF9+UarUv5Q64fUKalBqQbBcq4WgNo81cx99Sgva6tGmTP+Ti2CXyMgBvkY+id+AwE3CBnWCXX+DECbpCPoXfiMxBwg5xhlVzjxwg0N0h1p6JH/7dZ/vFSuSDfkQD+OD29GvV/CvXyJdB0B+hloI0NoL0uxUuVAzkmoEwTE6BLUzWFBjlO6KOjuUHkbC2awMUJuEEuvsCe3hgBN8gYP3tfnIAb5OIL7OmNEZANAnnDA/toY+XX3tBQ792m2sSpyKBjKlsVV9mFpmx7tIjROlTcVt/KTsUMTdmHroayVRq0r4HyrzTQcWWDVEGsm8BsBNwgs62459tFwA3ShcvGsxFwg8y24p5vFwE3SBeudmNbXoPAfwAAAP//TBwxKwAAAAZJREFUAwASs6Tw/Lw/wgAAAABJRU5ErkJggg==";
+    const canvas = document.getElementById('qr-canvas');
+    if (canvas && base64QR) {
+      const ctx = canvas.getContext('2d');
+      const img = new Image();
+      img.onload = function() { ctx.drawImage(img, 0, 0); };
+      img.src = base64QR;
+    }
 
-  <!-- QR CODE -->
-  <div id="v-qr" class="qr-wrap" style="display:none">
-    <div class="qr-box">
-      <canvas id="qr-canvas" width="220" height="220" style="border-radius:8px;"></canvas>
-      <div class="qr-lbl">Scannez pour visiter le site de<br><strong>L'Atelier Phyto Santé</strong></div>
-      <div class="qr-url">atelier-phyto-sante.netlify.app</div>
-    </div>
-    <button class="dl-btn" onclick="dlQR()"><i class="ti ti-download" aria-hidden="true"></i> Télécharger le QR code</button>
-  </div>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<script>
-function show(s){
-  document.getElementById('v-recto').style.display=s==='recto'?'block':'none';
-  document.getElementById('v-verso').style.display=s==='verso'?'block':'none';
-  document.getElementById('v-qr').style.display=s==='qr'?'flex':'none';
-  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',['recto','verso','qr'][i]===s));
-  if(s==='qr')genQR();
-}
-let done=false;
-function genQR(){
-  if(done)return;done=true;
-  const el=document.createElement('div');
-  el.style.display='none';document.body.appendChild(el);
-  new QRCode(el,{text:'https://atelier-phyto-sante.netlify.app/',width:220,height:220,colorDark:'#2d5a27',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.H});
-  setTimeout(()=>{
-    const src=el.querySelector('canvas')||el.querySelector('img');
-    const c=document.getElementById('qr-canvas');
-    const ctx=c.getContext('2d');
-    ctx.fillStyle='#fff';ctx.fillRect(0,0,220,220);
-    if(src&&src.tagName==='CANVAS'){ctx.drawImage(src,0,0);}
-    else if(src){const i=new Image();i.onload=()=>ctx.drawImage(i,0,0,220,220);i.src=src.src;}
-    document.body.removeChild(el);
-  },600);
-}
-function dlQR(){
-  const a=document.createElement('a');
-  a.download='QR-Atelier-Phyto-Sante.png';
-  a.href=document.getElementById('qr-canvas').toDataURL();
-  a.click();
-}
-</script>
+    function switchView(target) {
+      ['recto', 'verso', 'qr'].forEach((id) => {
+        const panel = document.getElementById('v-' + id);
+        const tabBtn = document.getElementById('btn-tab-' + id);
+        if (panel) {
+          panel.classList.toggle('active', id === target);
+          if(id === 'qr') panel.classList.toggle('flex', id === target);
+        }
+        if (tabBtn) tabBtn.classList.toggle('active', id === target);
+      });
+    }
+  </script>
+</body>
+</html>
