@@ -1,0 +1,164 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Lato:wght@300;400;700&display=swap');
+.outer{display:flex;flex-direction:column;align-items:center;gap:1.5rem;padding:1.5rem 0;}
+.tabs{display:flex;gap:8px;}
+.tab{padding:6px 18px;border-radius:20px;border:0.5px solid #4a7c3f;background:transparent;color:#4a7c3f;cursor:pointer;font-size:12px;font-family:'Lato',sans-serif;transition:all .2s;}
+.tab.active{background:#2d5a27;color:#fff;border-color:#2d5a27;}
+
+.card{width:680px;max-width:100%;background:linear-gradient(145deg,#f9f6f0,#f2ede3);border-radius:18px;border:0.5px solid #c8bb99;overflow:hidden;font-family:'Lato',sans-serif;}
+
+.card-header{background:linear-gradient(135deg,#2d5a27,#4a7c3f,#3a6b34);padding:2rem 2.5rem 1.5rem;position:relative;overflow:hidden;}
+.card-header::before{content:'';position:absolute;top:-30px;right:-30px;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,0.06);}
+.card-header::after{content:'';position:absolute;bottom:-40px;left:40%;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,0.04);}
+.brand-top{display:flex;align-items:center;gap:1rem;margin-bottom:1rem;}
+.logo-circle{width:58px;height:58px;border-radius:50%;background:rgba(255,255,255,0.15);border:1.5px solid rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0;}
+.brand-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#fff;letter-spacing:.5px;line-height:1.2;}
+.brand-name span{display:block;font-size:13px;font-weight:400;color:rgba(255,255,255,0.75);font-family:'Lato',sans-serif;letter-spacing:2px;text-transform:uppercase;margin-top:2px;}
+.tagline{font-size:12px;color:rgba(255,255,255,0.8);line-height:1.5;font-style:italic;max-width:480px;}
+
+.card-body{padding:1.5rem 2.5rem 1rem;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+.name-block{grid-column:1/-1;border-bottom:0.5px solid #c8bb99;padding-bottom:1rem;}
+.person-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:#2d5a27;margin:0;}
+.person-title{font-size:12px;color:#7a6e5e;letter-spacing:1.5px;text-transform:uppercase;margin:2px 0 0;font-weight:300;}
+
+.section h4{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:#4a7c3f;margin:0 0 .75rem;font-weight:700;}
+.ci{display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;font-size:13px;color:#3a3226;line-height:1.4;}
+.ci i{color:#4a7c3f;font-size:15px;margin-top:1px;flex-shrink:0;}
+.ci a{color:#4a7c3f;text-decoration:none;}
+
+.card-footer{background:#f5efe3;border-top:0.5px solid #c8bb99;padding:.75rem 2.5rem;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#8a7d6a;flex-wrap:wrap;gap:4px;}
+.fl{display:flex;gap:4px;}.flb{font-weight:700;color:#5a5248;}
+
+.back-card{width:680px;max-width:100%;background:linear-gradient(135deg,#2d5a27,#3a6b34);border-radius:18px;padding:2rem 2.5rem;font-family:'Lato',sans-serif;color:#fff;}
+.back-title{font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(255,255,255,0.6);margin:0 0 1.25rem;letter-spacing:1px;text-transform:uppercase;}
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem;}
+.svc{background:rgba(255,255,255,0.1);border:0.5px solid rgba(255,255,255,0.2);border-radius:10px;padding:.75rem;text-align:center;font-size:12px;color:rgba(255,255,255,0.9);line-height:1.4;}
+.svc-icon{font-size:22px;margin-bottom:6px;display:block;}
+.iban-box{background:rgba(255,255,255,0.08);border:0.5px solid rgba(255,255,255,0.2);border-radius:10px;padding:.75rem 1rem;display:flex;justify-content:space-between;align-items:center;}
+.iban-lbl{font-size:10px;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;}
+.iban-num{font-family:monospace;font-size:13px;color:#fff;letter-spacing:1px;}
+.bank-nm{font-size:11px;color:rgba(255,255,255,0.6);}
+
+.qr-wrap{display:flex;flex-direction:column;align-items:center;gap:1rem;}
+.qr-box{background:var(--color-background-primary);border:0.5px solid #c8bb99;border-radius:14px;padding:1.25rem;display:flex;flex-direction:column;align-items:center;gap:10px;}
+.qr-lbl{font-size:12px;color:var(--color-text-secondary);text-align:center;font-family:'Lato',sans-serif;line-height:1.5;}
+.qr-url{font-size:11px;color:#4a7c3f;font-weight:500;}
+.dl-btn{padding:8px 22px;border-radius:20px;border:none;background:#2d5a27;color:#fff;cursor:pointer;font-size:12px;font-family:'Lato',sans-serif;}
+</style>
+
+
+<div class="outer">
+  <div class="tabs">
+    <button class="tab active" onclick="show('recto')">Recto</button>
+    <button class="tab" onclick="show('verso')">Verso</button>
+    <button class="tab" onclick="show('qr')">QR Code</button>
+  </div>
+
+  <!-- RECTO -->
+  <div id="v-recto" class="card">
+    <div class="card-header">
+      <div class="brand-top">
+        <div class="logo-circle">🌿</div>
+        <div>
+          <div class="brand-name">
+            L'Atelier Phyto Santé
+            <span>Bizerte — Tunisie</span>
+          </div>
+        </div>
+      </div>
+      <div class="tagline">Extraction et transformation de plantes aromatiques et médicinales · Huiles essentielles &amp; produits naturels sans additifs chimiques</div>
+    </div>
+
+    <div class="card-body">
+      <div class="name-block">
+        <p class="person-name">Mme Kallel Amira</p>
+        <p class="person-title">Gérante &amp; Fondatrice</p>
+      </div>
+
+      <div class="section">
+        <h4>Contact</h4>
+        <div class="ci"><i class="ti ti-phone" aria-hidden="true"></i><span>+216 25 441 913</span></div>
+        <div class="ci"><i class="ti ti-mail" aria-hidden="true"></i><span>amiramaria007@gmail.com</span></div>
+        <div class="ci"><i class="ti ti-world" aria-hidden="true"></i><a href="https://atelier-phyto-sante.netlify.app/" target="_blank">atelier-phyto-sante.netlify.app</a></div>
+        <div class="ci"><i class="ti ti-map-pin" aria-hidden="true"></i><span>Demna, Sidi Abdel Aziz<br>Ras el Jbal, Bizerte 7070</span></div>
+      </div>
+
+      <div class="section">
+        <h4>Informations légales</h4>
+        <div class="ci"><i class="ti ti-building" aria-hidden="true"></i><span>SURL · Capital 25 000 DT</span></div>
+        <div class="ci"><i class="ti ti-id" aria-hidden="true"></i><span>MF : 1960067V A M 000</span></div>
+        <div class="ci"><i class="ti ti-certificate" aria-hidden="true"></i><span>RC : Bizerte</span></div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="fl"><span class="flb">IBAN :</span><span>TN59 0813 5030 0610 0032 5065 · BIAT</span></div>
+      <span style="color:#8ab87a">🌿 100% Naturel · Sans additifs chimiques</span>
+    </div>
+  </div>
+
+  <!-- VERSO -->
+  <div id="v-verso" class="back-card" style="display:none">
+    <p class="back-title">Nos produits &amp; services</p>
+    <div class="sgrid">
+      <div class="svc"><span class="svc-icon">💧</span>Huiles essentielles pures</div>
+      <div class="svc"><span class="svc-icon">🌾</span>Huiles végétales naturelles</div>
+      <div class="svc"><span class="svc-icon">🌸</span>Eaux florales &amp; hydrolats</div>
+      <div class="svc"><span class="svc-icon">🌿</span>Plantes aromatiques séchées</div>
+      <div class="svc"><span class="svc-icon">✨</span>Cosmétiques naturels</div>
+      <div class="svc"><span class="svc-icon">🫙</span>Produits de phytothérapie</div>
+    </div>
+    <div class="iban-box">
+      <div>
+        <div class="iban-lbl">Coordonnées bancaires</div>
+        <div class="iban-num">TN59 0813 5030 0610 0032 5065</div>
+        <div class="bank-nm">BIAT — Banque Internationale Arabe de Tunisie</div>
+      </div>
+      <div style="font-size:28px">🏦</div>
+    </div>
+  </div>
+
+  <!-- QR CODE -->
+  <div id="v-qr" class="qr-wrap" style="display:none">
+    <div class="qr-box">
+      <canvas id="qr-canvas" width="220" height="220" style="border-radius:8px;"></canvas>
+      <div class="qr-lbl">Scannez pour visiter le site de<br><strong>L'Atelier Phyto Santé</strong></div>
+      <div class="qr-url">atelier-phyto-sante.netlify.app</div>
+    </div>
+    <button class="dl-btn" onclick="dlQR()"><i class="ti ti-download" aria-hidden="true"></i> Télécharger le QR code</button>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+function show(s){
+  document.getElementById('v-recto').style.display=s==='recto'?'block':'none';
+  document.getElementById('v-verso').style.display=s==='verso'?'block':'none';
+  document.getElementById('v-qr').style.display=s==='qr'?'flex':'none';
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',['recto','verso','qr'][i]===s));
+  if(s==='qr')genQR();
+}
+let done=false;
+function genQR(){
+  if(done)return;done=true;
+  const el=document.createElement('div');
+  el.style.display='none';document.body.appendChild(el);
+  new QRCode(el,{text:'https://atelier-phyto-sante.netlify.app/',width:220,height:220,colorDark:'#2d5a27',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.H});
+  setTimeout(()=>{
+    const src=el.querySelector('canvas')||el.querySelector('img');
+    const c=document.getElementById('qr-canvas');
+    const ctx=c.getContext('2d');
+    ctx.fillStyle='#fff';ctx.fillRect(0,0,220,220);
+    if(src&&src.tagName==='CANVAS'){ctx.drawImage(src,0,0);}
+    else if(src){const i=new Image();i.onload=()=>ctx.drawImage(i,0,0,220,220);i.src=src.src;}
+    document.body.removeChild(el);
+  },600);
+}
+function dlQR(){
+  const a=document.createElement('a');
+  a.download='QR-Atelier-Phyto-Sante.png';
+  a.href=document.getElementById('qr-canvas').toDataURL();
+  a.click();
+}
+</script>
